@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Java Script Testing</title>
+    <style>
+        .pass::before {
+            content: 'PASS: ';
+            color: green;
+            font-weight: bold;
+        }
+        
+        .fail::before {
+            content: 'FAIL: ';
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="output">
+    </ul>
+
+    <script>
+        var output = document.getElementById('output');
+
+        function assert(outcome, description) {
+            var li = document.createElement('li');
+            li.className = outcome ? 'pass' : 'fail';
+            li.appendChild(document.createTextNode(description));
+            output.appendChild(li);
+        }
+    </script>
+
+    <script>
+        var someArray = [1, 2, 3, 4, 5],
+            len = someArray.length,
+            i = 0;
+        var count = 0;
+
+        for (; i < len; i++)
+
+            (function(i) {
+            setTimeout(function() {
+                assert(count++ === i, 'Prüfen des Wertes ' + i);
+            }, i * 300);
+        })(i);
+    </script>
+
+</body>
+
+</html>
